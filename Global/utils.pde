@@ -26,3 +26,6 @@
 	  
 	}
 }
+
+void Log(String msg) { 
+}
