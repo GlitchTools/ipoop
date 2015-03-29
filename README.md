@@ -2,8 +2,12 @@
 processing.org stuff
 -- 
 HOWTO
+
 place IRunnable in the folder next to your sketch, and add something like this:
-    
+
+--
+
+
     PImage img;
     void setup() { 
     		  img = loadImage("img.jpg");

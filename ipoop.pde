@@ -61,7 +61,7 @@ void draw() {
   // or, for some automation: (uncomment the next block to enable :) 
 _recipes.add(new Recipe(new Slicer(),random(10),random(100)));
 _recipes.add(new Recipe(new Slicer(),random(20),random(100)));
-_recipes.add(new Recipe(new Slicer(),random(30),random(100)));
+_recipes.add(new Recipe(new SinWav(),random(100),random(100)));
 _recipes.add(new Recipe(new Slicer(),random(40),random(100)));
 _recipes.add(new Recipe(new SinSin(),random(50),random(100)));
 _recipes.add(new Recipe(new Slicer(),random(60),random(100)));
@@ -84,14 +84,15 @@ _recipes.add(new Recipe(new SinSin2(),random(100),random(100)));
 */
 
 	if (img1 != null ) { 
-                for (int i = 0, l = _recipes.size(); i<l; i++) { 
-                  if (!( i % 5 == 0 || i % 8 == 0 )) continue;
+                for (int i = drawCounter, l = _recipes.size(); i<l; i++) { 
+		    if ( !( i % 10 == 0 ) ) continue;
                     Recipe recipe = _recipes.get(i);
   			if ( recipe.RunnableMergeEffect != null ) { 
 				//kewl
-			} else if ( recipe.RunnableEffect != null ) { 
+			} else if ( recipe.RunnableEffect != null && random(100) > 50 ) { 
 				img1 = recipe.run(img1);
 				image(img1,0,0);
+                                save("C:\\seq"+drawCounter+".png");
 			}
 
 		}
@@ -99,8 +100,8 @@ _recipes.add(new Recipe(new SinSin2(),random(100),random(100)));
   
 
 	drawCounter++;
-int maxIterations = 3;
-	if ( drawCounter >= _recipes.size() || drawCounter > maxIterations ) { 
+int maxIterations = 30;
+	if ( drawCounter >= _recipes.size() || drawCounter > maxIterations ) {  //impossible in current flow
 		noLoop();
 	}
 	println(drawCounter);
